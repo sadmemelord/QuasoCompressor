@@ -1,0 +1,80 @@
+/*
+  ==============================================================================
+
+    This file contains the basic framework code for a JUCE plugin processor.
+
+  ==============================================================================
+*/
+
+#pragma once
+
+#include <JuceHeader.h>
+
+//==============================================================================
+/**
+*/
+class QuasoCompressorAudioProcessor  : public juce::AudioProcessor, juce::AudioProcessorValueTreeState::Listener
+{
+public:
+    //==============================================================================
+    QuasoCompressorAudioProcessor();
+    ~QuasoCompressorAudioProcessor() override;
+
+    //==============================================================================
+    void prepareToPlay (double sampleRate, int samplesPerBlock) override;
+    void releaseResources() override;
+
+   #ifndef JucePlugin_PreferredChannelConfigurations
+    bool isBusesLayoutSupported (const BusesLayout& layouts) const override;
+   #endif
+
+    void processBlock (juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
+
+    //==============================================================================
+    juce::AudioProcessorEditor* createEditor() override;
+    bool hasEditor() const override;
+
+    //==============================================================================
+    const juce::String getName() const override;
+
+    bool acceptsMidi() const override;
+    bool producesMidi() const override;
+    bool isMidiEffect() const override;
+    double getTailLengthSeconds() const override;
+
+    //==============================================================================
+    int getNumPrograms() override;
+    int getCurrentProgram() override;
+    void setCurrentProgram (int index) override;
+    const juce::String getProgramName (int index) override;
+    void changeProgramName (int index, const juce::String& newName) override;
+
+    //==============================================================================
+    void getStateInformation (juce::MemoryBlock& destData) override;
+    void setStateInformation (const void* data, int sizeInBytes) override;
+
+    //audio processor value tree state
+    juce::AudioProcessorValueTreeState apvts;
+
+private:
+
+    //two main methods are needed for the apvts a custom method to creater the parameter layout
+    //and an overrided method to listen to parameters changed for the GUI
+    //to do so the AudioProcessor class needs to inherit also from juce::AudioProcessorValueTreeState::Listener
+    juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+    void parameterChanged(const juce::String& parameterID, float newValue) override;
+
+    //to change the input and output gain two dsp modules are used
+    juce::dsp::Gain<float> inputModule;
+    juce::dsp::Gain<float> outputModule;
+
+    //the dsp module also implements a compressor module
+    juce::dsp::Compressor<float> compressorModule;
+
+    //method to set the various parameters
+    void updateParameters();
+
+
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (QuasoCompressorAudioProcessor)
+};
