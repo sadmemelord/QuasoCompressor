@@ -77,6 +77,20 @@ private:
     void setCommonSliderProps(juce::Slider& slider);
     void setCommonLabelProps(juce::Label& label);
 
+    //setting up attachment
+    using Attachment = std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>;
+
+    Attachment inputAttach;
+    Attachment threshAttach;
+    Attachment ratioAttach;
+    Attachment attackAttach;
+    Attachment releaseAttach;
+    Attachment outputAttach;
+
+    //method to attach sliders to the apvts
+    void attachSliders();
+
+
 
 
 

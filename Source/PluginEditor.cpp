@@ -30,7 +30,7 @@ QuasoCompressorAudioProcessorEditor::QuasoCompressorAudioProcessorEditor (QuasoC
         dialLabels[i]->attachToComponent(dials[i], false);
     }
 
-   
+    attachSliders();
 
     setSize(1000, 500);
 

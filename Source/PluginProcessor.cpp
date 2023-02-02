@@ -27,23 +27,23 @@ QuasoCompressorAudioProcessor::QuasoCompressorAudioProcessor()
 {
     //every paramaters needs a listener inside the constructor of the main AudioProcessor class
     //everything the listener receives a changes from its parameter ID the parameterChanged method is called
-    apvts.addParameterListener("input", this);
-    apvts.addParameterListener("thresh", this);
-    apvts.addParameterListener("ratio", this);
-    apvts.addParameterListener("attack", this);
-    apvts.addParameterListener("release", this);
-    apvts.addParameterListener("output", this);
+    apvts.addParameterListener(inputID, this);
+    apvts.addParameterListener(threshID, this);
+    apvts.addParameterListener(ratioID, this);
+    apvts.addParameterListener(attackID, this);
+    apvts.addParameterListener(releaseID, this);
+    apvts.addParameterListener(outputID, this);
 }
 
 QuasoCompressorAudioProcessor::~QuasoCompressorAudioProcessor()
 { 
     //the listener for each parameter has to be removed in the destructor
-    apvts.removeParameterListener("input", this);
-    apvts.removeParameterListener("thresh", this);
-    apvts.removeParameterListener("ratio", this);
-    apvts.removeParameterListener("attack", this);
-    apvts.removeParameterListener("release", this);
-    apvts.removeParameterListener("output", this);
+    apvts.removeParameterListener(inputID, this);
+    apvts.removeParameterListener(threshID, this);
+    apvts.removeParameterListener(ratioID, this);
+    apvts.removeParameterListener(attackID, this);
+    apvts.removeParameterListener(releaseID, this);
+    apvts.removeParameterListener(outputID, this);
 
 }
 
@@ -57,22 +57,22 @@ juce::AudioProcessorValueTreeState::ParameterLayout QuasoCompressorAudioProcesso
     juce::NormalisableRange<float> attackRange = juce::NormalisableRange<float>(0.0f, 200.0f, 1.0f);
     attackRange.setSkewForCentre(50.0f);
 
-    juce::NormalisableRange<float> releaseRange = juce::NormalisableRange<float>(0.0f, 5000.0f, 1.0f);
+    juce::NormalisableRange<float> releaseRange = juce::NormalisableRange<float>( 5.0f, 5000.0f, 1.0f);
     releaseRange.setSkewForCentre(160.0f);
 
     //parameters are created
-    auto pInput = std::make_unique<juce::AudioParameterFloat>("input", "Input", -60.0f, 24.0f, 0.0f);
-    auto pThresh = std::make_unique<juce::AudioParameterFloat>("thresh", "Threshold", -60.0f, 10.0f, 0.0f);
-    auto pRatio = std::make_unique<juce::AudioParameterFloat>("ratio", "Ratio", 1.0f, 20.0f, 1.0f);
-    auto pAttack = std::make_unique<juce::AudioParameterFloat>("attack", "Attack", attackRange, 50.0f);
-    auto pRelease = std::make_unique<juce::AudioParameterFloat>("release", "Release", releaseRange, 160.0f);
-    auto pOutput = std::make_unique<juce::AudioParameterFloat>("output", "Output", -60.0f, 24.0f, 0.0f);
+    auto pInput = std::make_unique<juce::AudioParameterFloat>(inputID, inputName, -60.0f, 24.0f, 0.0f);
+    auto pThresh = std::make_unique<juce::AudioParameterFloat>(threshID, threshName, -60.0f, 10.0f, 0.0f);
+    auto pRatio = std::make_unique<juce::AudioParameterFloat>(ratioID, ratioName, 1.0f, 20.0f, 1.0f);
+    auto pAttack = std::make_unique<juce::AudioParameterFloat>(attackID, attackName, attackRange, 50.0f);
+    auto pRelease = std::make_unique<juce::AudioParameterFloat>(releaseID, releaseName, releaseRange, 160.0f);
+    auto pOutput = std::make_unique<juce::AudioParameterFloat>(outputID, outputName, -60.0f, 24.0f, 0.0f);
 
     //different type of parameters like floats or selection are pushed into the params vector
     params.push_back(std::move(pInput));
     params.push_back(std::move(pThresh));
     params.push_back(std::move(pRatio));
-    params.push_back(std::move(pAttack));
+    params.push_back(std::move(pAttack)); 
     params.push_back(std::move(pRelease));
     params.push_back(std::move(pOutput));
 
@@ -90,12 +90,12 @@ void QuasoCompressorAudioProcessor::parameterChanged(const juce::String& paramet
 void QuasoCompressorAudioProcessor::updateParameters()
 {
     //the load method is needed because the raw parameters are atomic
-    inputModule.setGainDecibels(apvts.getRawParameterValue("input")->load());
-    compressorModule.setThreshold(apvts.getRawParameterValue("thresh")->load());
-    compressorModule.setRatio(apvts.getRawParameterValue("ratio")->load());
-    compressorModule.setAttack(apvts.getRawParameterValue("attack")->load());
-    compressorModule.setRelease(apvts.getRawParameterValue("release")->load());
-    outputModule.setGainDecibels(apvts.getRawParameterValue("output")->load());
+    inputModule.setGainDecibels(apvts.getRawParameterValue(inputID)->load());
+    compressorModule.setThreshold(apvts.getRawParameterValue(threshID)->load());
+    compressorModule.setRatio(apvts.getRawParameterValue(ratioID)->load());
+    compressorModule.setAttack(apvts.getRawParameterValue(attackID)->load());
+    compressorModule.setRelease(apvts.getRawParameterValue(releaseID)->load());
+    outputModule.setGainDecibels(apvts.getRawParameterValue(outputID)->load());
 
 }
 
@@ -175,8 +175,8 @@ void QuasoCompressorAudioProcessor::prepareToPlay (double sampleRate, int sample
     //prepare dsp modules for processing
     inputModule.prepare(spec);
     inputModule.setRampDurationSeconds(0.02);
+    outputModule.setRampDurationSeconds(0.02); 
     outputModule.prepare(spec);
-    outputModule.setRampDurationSeconds(0.02);
     compressorModule.prepare(spec);
 
     updateParameters();
@@ -220,7 +220,7 @@ void QuasoCompressorAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
 
-    juce::dsp::AudioBlock<float> block(buffer);
+    juce::dsp::AudioBlock<float> block{ buffer };
 
     //process DSP modules
     inputModule.process(juce::dsp::ProcessContextReplacing<float>(block));

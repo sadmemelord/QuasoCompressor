@@ -5,6 +5,10 @@
               companyName="sadmemelord">
   <MAINGROUP id="AsMcn2" name="QuasoCompressor">
     <GROUP id="{D7589DD5-C5DE-D5EC-0ABB-CC849D0320A2}" name="Source">
+      <GROUP id="{934AFFCF-E6D9-A510-94D9-DF6065430908}" name="Parameters">
+        <FILE id="ej4ums" name="Parameters.cpp" compile="1" resource="0" file="Source/Parameters/Parameters.cpp"/>
+        <FILE id="mhnrMB" name="Parameters.h" compile="0" resource="0" file="Source/Parameters/Parameters.h"/>
+      </GROUP>
       <GROUP id="{2FCDF22E-12E8-C833-F580-A2D5C8080127}" name="GUI">
         <GROUP id="{2F35E864-726F-E587-054A-5BD819F58A90}" name="LookAndFeel">
           <FILE id="z0bHft" name="DialLAF.cpp" compile="1" resource="0" file="Source/GUI/LookAndFeel/DialLAF.cpp"/>
