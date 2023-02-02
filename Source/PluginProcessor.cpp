@@ -175,10 +175,12 @@ void QuasoCompressorAudioProcessor::prepareToPlay (double sampleRate, int sample
     //prepare dsp modules for processing
     inputModule.prepare(spec);
     inputModule.setRampDurationSeconds(0.02);
+
     outputModule.setRampDurationSeconds(0.02); 
     outputModule.prepare(spec);
-    compressorModule.prepare(spec);
 
+    compressorModule.prepare(spec);
+   
     updateParameters();
 }
 

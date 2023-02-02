@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="yy46oQ" name="QuasoCompressor" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
-              companyName="sadmemelord">
+              displaySplashScreen="1" jucerFormatVersion="1" companyName="sadmemelord">
   <MAINGROUP id="AsMcn2" name="QuasoCompressor">
     <GROUP id="{D7589DD5-C5DE-D5EC-0ABB-CC849D0320A2}" name="Source">
       <GROUP id="{934AFFCF-E6D9-A510-94D9-DF6065430908}" name="Parameters">

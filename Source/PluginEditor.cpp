@@ -30,6 +30,16 @@ QuasoCompressorAudioProcessorEditor::QuasoCompressorAudioProcessorEditor (QuasoC
         dialLabels[i]->attachToComponent(dials[i], false);
     }
 
+    //some properties are different between dials like the textbox suffix
+    inputDial.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::indianred.darker(0.3));
+    inputDial.setTextValueSuffix(" dB");
+    threshDial.setTextValueSuffix(" dB");
+    attackDial.setTextValueSuffix(" ms");
+    releaseDial.setTextValueSuffix(" ms");
+    outputDial.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::indianred.darker(0.3));
+    outputDial.setTextValueSuffix(" dB");
+
+
     attachSliders();
 
     setSize(1000, 500);
