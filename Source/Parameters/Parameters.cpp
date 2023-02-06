@@ -25,5 +25,11 @@ const juce::String attackName = "Attack";
 const juce::String releaseID = "release";
 const juce::String releaseName = "Release";
 
+const juce::String limThreshID = "limThresh";
+const juce::String limThreshName = "Limiter Thresh";
+
+const juce::String limReleaseID = "limRelease";
+const juce::String limReleaseName = "Limiter Release";
+
 const juce::String outputID = "output";
 const juce::String outputName = "Output";

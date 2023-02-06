@@ -26,5 +26,11 @@ extern const juce::String attackName;
 extern const juce::String releaseID;
 extern const juce::String releaseName;
 
+extern const juce::String limThreshID;
+extern const juce::String limThreshName;
+
+extern const juce::String limReleaseID;
+extern const juce::String limReleaseName;
+
 extern const juce::String outputID;
 extern const juce::String outputName;

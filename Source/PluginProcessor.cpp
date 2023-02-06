@@ -32,6 +32,8 @@ QuasoCompressorAudioProcessor::QuasoCompressorAudioProcessor()
     apvts.addParameterListener(ratioID, this);
     apvts.addParameterListener(attackID, this);
     apvts.addParameterListener(releaseID, this);
+    apvts.addParameterListener(limThreshID, this);
+    apvts.addParameterListener(limReleaseID, this);
     apvts.addParameterListener(outputID, this);
 }
 
@@ -43,6 +45,8 @@ QuasoCompressorAudioProcessor::~QuasoCompressorAudioProcessor()
     apvts.removeParameterListener(ratioID, this);
     apvts.removeParameterListener(attackID, this);
     apvts.removeParameterListener(releaseID, this);
+    apvts.removeParameterListener(limThreshID, this);
+    apvts.removeParameterListener(limReleaseID, this);
     apvts.removeParameterListener(outputID, this);
 
 }
@@ -60,20 +64,27 @@ juce::AudioProcessorValueTreeState::ParameterLayout QuasoCompressorAudioProcesso
     juce::NormalisableRange<float> releaseRange = juce::NormalisableRange<float>( 5.0f, 5000.0f, 1.0f);
     releaseRange.setSkewForCentre(160.0f);
 
+    juce::NormalisableRange<float> limReleaseRange = juce::NormalisableRange<float>(1.0f, 1000.0f, 1.0f);
+    releaseRange.setSkewForCentre(250.0f);
+
     //parameters are created
     auto pInput = std::make_unique<juce::AudioParameterFloat>(inputID, inputName, -60.0f, 24.0f, 0.0f);
-    auto pThresh = std::make_unique<juce::AudioParameterFloat>(threshID, threshName, -60.0f, 10.0f, 0.0f);
+    auto pThresh = std::make_unique<juce::AudioParameterFloat>(threshID, threshName, -60.0f, 12.0f, 0.0f);
     auto pRatio = std::make_unique<juce::AudioParameterFloat>(ratioID, ratioName, 1.0f, 20.0f, 1.0f);
     auto pAttack = std::make_unique<juce::AudioParameterFloat>(attackID, attackName, attackRange, 50.0f);
     auto pRelease = std::make_unique<juce::AudioParameterFloat>(releaseID, releaseName, releaseRange, 160.0f);
+    auto pLimThresh = std::make_unique<juce::AudioParameterFloat>(limThreshID, limThreshName, -60.0f, 0.0f, 160.0f);
+    auto pLimRelease = std::make_unique<juce::AudioParameterFloat>(limReleaseID, limReleaseName, limReleaseRange, 250.0f);
     auto pOutput = std::make_unique<juce::AudioParameterFloat>(outputID, outputName, -60.0f, 24.0f, 0.0f);
-
+     
     //different type of parameters like floats or selection are pushed into the params vector
     params.push_back(std::move(pInput));
     params.push_back(std::move(pThresh));
     params.push_back(std::move(pRatio));
     params.push_back(std::move(pAttack)); 
     params.push_back(std::move(pRelease));
+    params.push_back(std::move(pLimThresh));
+    params.push_back(std::move(pLimRelease));
     params.push_back(std::move(pOutput));
 
 
@@ -95,6 +106,8 @@ void QuasoCompressorAudioProcessor::updateParameters()
     compressorModule.setRatio(apvts.getRawParameterValue(ratioID)->load());
     compressorModule.setAttack(apvts.getRawParameterValue(attackID)->load());
     compressorModule.setRelease(apvts.getRawParameterValue(releaseID)->load());
+    limiterModule.setThreshold(apvts.getRawParameterValue(limThreshID)->load());
+    limiterModule.setRelease(apvts.getRawParameterValue(limReleaseID)->load());
     outputModule.setGainDecibels(apvts.getRawParameterValue(outputID)->load());
 
 }
@@ -180,6 +193,8 @@ void QuasoCompressorAudioProcessor::prepareToPlay (double sampleRate, int sample
     outputModule.prepare(spec);
 
     compressorModule.prepare(spec);
+
+    limiterModule.prepare(spec);
    
     updateParameters();
 }
@@ -222,11 +237,12 @@ void QuasoCompressorAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
 
-    juce::dsp::AudioBlock<float> block{ buffer };
+    auto block = juce::dsp::AudioBlock<float>(buffer);
 
     //process DSP modules
     inputModule.process(juce::dsp::ProcessContextReplacing<float>(block));
     compressorModule.process(juce::dsp::ProcessContextReplacing<float>(block));
+    limiterModule.process(juce::dsp::ProcessContextReplacing<float>(block));
     outputModule.process(juce::dsp::ProcessContextReplacing<float>(block));
 
 

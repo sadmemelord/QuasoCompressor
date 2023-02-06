@@ -9,6 +9,9 @@
         <FILE id="mhnrMB" name="Parameters.h" compile="0" resource="0" file="Source/Parameters/Parameters.h"/>
       </GROUP>
       <GROUP id="{2FCDF22E-12E8-C833-F580-A2D5C8080127}" name="GUI">
+        <GROUP id="{2933A0D2-F796-2453-8CE3-E15B4C2809B5}" name="Groups">
+          <FILE id="aTV8bt" name="Groups.cpp" compile="1" resource="0" file="Source/GUI/Groups/Groups.cpp"/>
+        </GROUP>
         <GROUP id="{2F35E864-726F-E587-054A-5BD819F58A90}" name="LookAndFeel">
           <FILE id="z0bHft" name="DialLAF.cpp" compile="1" resource="0" file="Source/GUI/LookAndFeel/DialLAF.cpp"/>
           <FILE id="s7ERMe" name="DialLAF.h" compile="0" resource="0" file="Source/GUI/LookAndFeel/DialLAF.h"/>

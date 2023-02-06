@@ -47,6 +47,8 @@ void QuasoCompressorAudioProcessorEditor::attachSliders()
     ratioAttach = std::make_unique<SliderAttachment>(audioProcessor.apvts, ratioID, ratioDial);
     attackAttach = std::make_unique<SliderAttachment>(audioProcessor.apvts, attackID, attackDial);
     releaseAttach = std::make_unique<SliderAttachment>(audioProcessor.apvts, releaseID, releaseDial);
+    limThreshAttach = std::make_unique<SliderAttachment>(audioProcessor.apvts, limThreshID, limThreshDial);
+    limReleaseAttach = std::make_unique<SliderAttachment>(audioProcessor.apvts, limReleaseID, limReleaseDial);
     outputAttach = std::make_unique<SliderAttachment>(audioProcessor.apvts, outputID, outputDial);
 
 }

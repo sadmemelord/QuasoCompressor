@@ -72,6 +72,9 @@ private:
     //the dsp module also implements a compressor module
     juce::dsp::Compressor<float> compressorModule;
 
+    //limiter module
+    juce::dsp::Limiter<float> limiterModule;
+
     //method to set the various parameters
     void updateParameters();
 

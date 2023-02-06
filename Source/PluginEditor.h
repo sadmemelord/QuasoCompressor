@@ -36,6 +36,8 @@ private:
     juce::Slider ratioDial;
     juce::Slider attackDial;
     juce::Slider releaseDial;
+    juce::Slider limThreshDial;
+    juce::Slider limReleaseDial;
     juce::Slider outputDial;
 
     //using custom look and feel
@@ -53,16 +55,22 @@ private:
         &ratioDial,
         &attackDial,
         &releaseDial,
+        &limThreshDial,
+        &limReleaseDial,
         &outputDial
     };
     
+    //labels
     juce::Label inputDialLabel;
     juce::Label threshDialLabel;
     juce::Label ratioDialLabel;
     juce::Label attackDialLabel;
     juce::Label releaseDialLabel;
+    juce::Label limThreshDialLabel;
+    juce::Label limReleaseDialLabel;
     juce::Label outputDialLabel;
 
+    //labels vector
     std::vector<juce::Label*> dialLabels =
     {
         &inputDialLabel,
@@ -70,12 +78,28 @@ private:
         &ratioDialLabel,
         &attackDialLabel,
         &releaseDialLabel,
+        &limThreshDialLabel,
+        &limReleaseDialLabel,
         &outputDialLabel
     };
 
-    //method to set some properties common to every silder and label
+    //groups
+    juce::GroupComponent ioGroup;
+    juce::GroupComponent compressorGroup;
+    juce::GroupComponent limiterGroup;
+
+    //groups vector
+    std::vector<juce::GroupComponent*> groups =
+    {
+        &ioGroup,
+        &compressorGroup,
+        &limiterGroup
+    };
+
+    //method to set some properties common to every silder, label and group
     void setCommonSliderProps(juce::Slider& slider);
     void setCommonLabelProps(juce::Label& label);
+    void setGroupProps(juce::GroupComponent& group);
 
     //setting up attachment
     using Attachment = std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>;
@@ -85,6 +109,8 @@ private:
     Attachment ratioAttach;
     Attachment attackAttach;
     Attachment releaseAttach;
+    Attachment limThreshAttach;
+    Attachment limReleaseAttach;
     Attachment outputAttach;
 
     //method to attach sliders to the apvts
