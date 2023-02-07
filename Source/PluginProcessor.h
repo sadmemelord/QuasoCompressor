@@ -10,6 +10,7 @@
 
 #include <JuceHeader.h>
 #include "./Parameters/Parameters.h"
+#include "./DSP/CustomCompressor.h"
 
 //==============================================================================
 /**
@@ -71,6 +72,9 @@ private:
 
     //the dsp module also implements a compressor module
     juce::dsp::Compressor<float> compressorModule;
+
+    //custom dsp compressor module based on Eric Tarr HACK AUDIO
+    CustomCompressor customCompressorModule;
 
     //limiter module
     juce::dsp::Limiter<float> limiterModule;

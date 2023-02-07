@@ -4,13 +4,25 @@
               displaySplashScreen="1" jucerFormatVersion="1" companyName="sadmemelord">
   <MAINGROUP id="AsMcn2" name="QuasoCompressor">
     <GROUP id="{D7589DD5-C5DE-D5EC-0ABB-CC849D0320A2}" name="Source">
+      <GROUP id="{3AA7347B-C769-588D-D2C3-E9D9D6869278}" name="DSP">
+        <FILE id="xldVei" name="CustomCompressor.cpp" compile="1" resource="0"
+              file="Source/DSP/CustomCompressor.cpp"/>
+        <FILE id="PdVLdv" name="CustomCompressor.h" compile="0" resource="0"
+              file="Source/DSP/CustomCompressor.h"/>
+      </GROUP>
       <GROUP id="{934AFFCF-E6D9-A510-94D9-DF6065430908}" name="Parameters">
         <FILE id="ej4ums" name="Parameters.cpp" compile="1" resource="0" file="Source/Parameters/Parameters.cpp"/>
         <FILE id="mhnrMB" name="Parameters.h" compile="0" resource="0" file="Source/Parameters/Parameters.h"/>
       </GROUP>
       <GROUP id="{2FCDF22E-12E8-C833-F580-A2D5C8080127}" name="GUI">
+        <GROUP id="{7A552564-44BA-2D36-BAD5-A6BDE6689467}" name="Buttons">
+          <FILE id="t6P086" name="Buttons.cpp" compile="1" resource="0" file="Source/GUI/Buttons/Buttons.cpp"/>
+        </GROUP>
         <GROUP id="{2933A0D2-F796-2453-8CE3-E15B4C2809B5}" name="Groups">
           <FILE id="aTV8bt" name="Groups.cpp" compile="1" resource="0" file="Source/GUI/Groups/Groups.cpp"/>
+        </GROUP>
+        <GROUP id="{AECC7D59-22E4-71EC-A4C6-115669E4CDC5}" name="Labels">
+          <FILE id="EB3I42" name="Labels.cpp" compile="1" resource="0" file="Source/GUI/Labels/Labels.cpp"/>
         </GROUP>
         <GROUP id="{2F35E864-726F-E587-054A-5BD819F58A90}" name="LookAndFeel">
           <FILE id="z0bHft" name="DialLAF.cpp" compile="1" resource="0" file="Source/GUI/LookAndFeel/DialLAF.cpp"/>

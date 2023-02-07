@@ -37,6 +37,11 @@ QuasoCompressorAudioProcessorEditor::QuasoCompressorAudioProcessorEditor (QuasoC
         setGroupProps(*groups[i]);
     }
 
+    for (int i = 0; i < buttons.size(); i++)
+    {
+        setButtonProps(*buttons[i]);
+    }
+
     //some properties are different between dials like the textbox suffix
     //inputDial.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::indianred.darker(0.3));
     inputDial.setTextValueSuffix(" dB");
@@ -138,6 +143,8 @@ void QuasoCompressorAudioProcessorEditor::resized()
 
     limiterGroup.setBounds(limThreshDial.getX(), limThreshDial.getY() * 0.1, 
                            limThreshDial.getWidth(), limThreshDial.getY() + limThreshDial.getHeight() * 2.4);
+    
+    compBypassButton.setBounds(ratioDial.getX() , getLocalBounds().getY() / 2, 100, 100);
 
 
 

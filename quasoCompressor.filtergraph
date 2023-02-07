@@ -61,13 +61,14 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="17" x="0.4949748743718593" y="0.5774647887323944" useARA="0">
+  <FILTER uid="17" x="0.4949748743718593" y="0.5754527162977867" useARA="0"
+          uiLastX_Normal="261" uiLastY_Normal="460" uiopen_Normal="0">
     <PLUGIN name="QuasoCompressor" format="VST3" category="Fx" manufacturer="sadmemelord"
             version="1.0.0" file="C:\Users\Utente\Desktop\TESI\JUCE Tutorials\QuasoCompressor\Builds\VisualStudio2022\x64\Debug\VST3\QuasoCompressor.vst3"
-            uniqueId="6ada5eb" isInstrument="0" fileTime="18608c6f466" infoUpdateTime="18608c94273"
+            uniqueId="6ada5eb" isInstrument="0" fileTime="1862cfabadd" infoUpdateTime="1862cff0400"
             numInputs="2" numOutputs="2" isShell="0" hasARAExtension="0"
             uid="e95cbac7"/>
-    <STATE>191.VMjLgXK....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9XCLt3hKt3hKt3hKt3hYRUUSTEETIckVwTjQisVTTgkdEYjKAQjYPQSPWgUdMcjKAQjct3hdA4hKt3hKt3hKtnTUv.UQAslXuk0UXoWUFE0YQcEV77RRC8Vav8lak4Fc9vyKVMEUy.Ea0cVZtMEcgQWY9..</STATE>
+    <STATE>635.VMjLgHm....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9LSNx3BTEoFUAACUQQUUpQ0TA4hKAYlKTETRUAUSAAkKBolQY4BQtHTQDYzX5UTLXEWPlM1Y2Y0XqEDTtjDTt3hKt3hKt3hKM4RPtPUPIUETMEDTtHjZFkkKDYWPEoFagYWUGMlKXcEVxU0UY4BQPIDQt3hKt3hKt3hKt3hKtTETRUDUS4BQl4xaQYjKAYGTAI2ZVElTUYTXqUTLhsVPlM1Y2Y0XqEDTtjDTt3hKt3hKt3hdg4RPtPUPIUETMEDTtHjZFkkKDYmPEYmUZMWTEoEdUEiXtEjYic1cVM1ZAAkKIAkKt3hKt3hKt3hKt3hKTETRUAUSAAkKBolQY4BQtHTQ2X0X5EzUioWPlM1Y2Y0XqEDTtjDTt3hKt3hYLkGSL4RPtPUPIUETMEDTtHjZFkkKDYWPEgzUXo2ZwDlKXcEVxU0UY4BQPIDQt3hKt3hKt3xLBAkKtTETRUDUS4BQl4xaQYjKAoFTAgWUFE1ZEEiXqEjYic1cVM1ZAAkKIAkKt3hKt3hKt3RStDjKTETRUAUSAAkKBolQY4BQtHTQPcjV3UULh4VPlM1Y2Y0XqEDTtjDTt3hKt3ha1ASaQ4xPt3hKt3hKt3hKt3haTU0PUQDU3sFaicVTWkEQEYzXmEDTtDDRTQlcEEiX4EDTtDDSt3xXt3hKt3hKt3hKlIUUMQUTPkzUZESQFM1ZQQEV5UjQ77RRC8Vav8lak4Fc9vyKVMEUy.Ea0cVZtMEcgQWY9..</STATE>
     <LAYOUT>
       <INPUTS>
         <BUS index="0" layout="L R"/>
@@ -77,14 +78,14 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="18" x="0.5" y="0.4104627766599598" useARA="0" uiLastX_Normal="129"
-          uiLastY_Normal="497" uiopen_Normal="1">
+  <FILTER uid="19" x="0.5" y="0.3199195171026157" useARA="0" uiLastX_Normal="991"
+          uiLastY_Normal="227" uiopen_Normal="0">
     <PLUGIN name="AudioFilePlayer" format="VST3" category="Fx" manufacturer="Matkat Music LLC"
-            version="1.0.0" file="C:\Users\Utente\Desktop\TESI\JUCE Plugins\AudioFilePlayer.vst3"
-            uniqueId="79fe81c" isInstrument="0" fileTime="18486e780e8" infoUpdateTime="18608c94274"
+            version="1.0.0" file="C:\Users\Utente\Desktop\TESI\Juce Projects\AudioFilePlayer-master\Builds\VisualStudio2022\x64\Debug\VST3\AudioFilePlayer.vst3"
+            uniqueId="79fe81c" isInstrument="0" fileTime="18486e780e8" infoUpdateTime="1862cff0401"
             numInputs="2" numOutputs="2" isShell="0" hasARAExtension="0"
             uid="e95d02c7"/>
-    <STATE>350.VMjLgTU....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9DyM33BTIISX1UEaho2ZVkUdAAkKAwDUigWRWkEcQ0VTucmUY4BQlYUQLolShUELhsVRxHlXUUzXqQiQis1cEE0ZMIiV5giQhIVTUE0TqQzUJUkLXsVPBQEd3vlVq0jQik2cUMEL2YzXuEzQgs1ZpElcUczXhUDUio1ZwDFUIcEVoMWLhI1cTkkdMcETxcmQSUWVWkESEYkVzQiTgYWSC4hKt3hKt3hKt3hKt3hRUACTEEzZh8VVWgkdUYTTmE0UX4BQP4hPqcjXm0jLh4BQP4xPt.0Qt3hKt3hKt3hKtQUUCUEQTg2ZrM1YQcUVDUjQicVP77RRC8Vav8lak4Fc9vyKVMEUy.Ea0cVZtMEcgQWY9..</STATE>
+    <STATE>319.VMjLgXS....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9DSM03BTIISX1UEaho2ZVkUdAAkKAwDUigWRWkEcQ0VTucmUY4BQ1AUQLolShUELhsVRxHlXUUzXqQiQis1cEEUci0VXxgiUXoVSGckdLMESyH1TMUFNUkUdEwlXq0jLWUVQowjc5gFV1AiUKoVRWM1bvHTX0giQhMGRosjLEw1Xt3hKt3hKt3hKt3hKt3FUUMTUDQEdqw1XmE0UYQTQFM1YAAkKAgDUjYWQwHVdAAkKAwjKtLlKt3hKt3hKt3hYRUUSTEETIckVwTjQisVTTgkdEYDOujzPu0Fbu4VYtQmO77hUSQ0LPwVcmklaSQWXzUlO..</STATE>
     <LAYOUT>
       <INPUTS>
         <BUS index="0" layout="L R"/>
@@ -96,6 +97,6 @@
   </FILTER>
   <CONNECTION srcFilter="17" srcChannel="0" dstFilter="15" dstChannel="0"/>
   <CONNECTION srcFilter="17" srcChannel="1" dstFilter="15" dstChannel="1"/>
-  <CONNECTION srcFilter="18" srcChannel="0" dstFilter="17" dstChannel="0"/>
-  <CONNECTION srcFilter="18" srcChannel="1" dstFilter="17" dstChannel="1"/>
+  <CONNECTION srcFilter="19" srcChannel="0" dstFilter="17" dstChannel="0"/>
+  <CONNECTION srcFilter="19" srcChannel="1" dstFilter="17" dstChannel="1"/>
 </FILTERGRAPH>

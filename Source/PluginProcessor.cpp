@@ -102,10 +102,10 @@ void QuasoCompressorAudioProcessor::updateParameters()
 {
     //the load method is needed because the raw parameters are atomic
     inputModule.setGainDecibels(apvts.getRawParameterValue(inputID)->load());
-    compressorModule.setThreshold(apvts.getRawParameterValue(threshID)->load());
-    compressorModule.setRatio(apvts.getRawParameterValue(ratioID)->load());
-    compressorModule.setAttack(apvts.getRawParameterValue(attackID)->load());
-    compressorModule.setRelease(apvts.getRawParameterValue(releaseID)->load());
+    customCompressorModule.setThreshold(apvts.getRawParameterValue(threshID)->load());
+    customCompressorModule.setRatio(apvts.getRawParameterValue(ratioID)->load());
+    customCompressorModule.setAttack(apvts.getRawParameterValue(attackID)->load());
+    customCompressorModule.setRelease(apvts.getRawParameterValue(releaseID)->load());
     limiterModule.setThreshold(apvts.getRawParameterValue(limThreshID)->load());
     limiterModule.setRelease(apvts.getRawParameterValue(limReleaseID)->load());
     outputModule.setGainDecibels(apvts.getRawParameterValue(outputID)->load());
@@ -192,7 +192,7 @@ void QuasoCompressorAudioProcessor::prepareToPlay (double sampleRate, int sample
     outputModule.setRampDurationSeconds(0.02); 
     outputModule.prepare(spec);
 
-    compressorModule.prepare(spec);
+    customCompressorModule.prepare(spec);
 
     limiterModule.prepare(spec);
    
@@ -241,7 +241,7 @@ void QuasoCompressorAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
 
     //process DSP modules
     inputModule.process(juce::dsp::ProcessContextReplacing<float>(block));
-    compressorModule.process(juce::dsp::ProcessContextReplacing<float>(block));
+    customCompressorModule.process(buffer);
     limiterModule.process(juce::dsp::ProcessContextReplacing<float>(block));
     outputModule.process(juce::dsp::ProcessContextReplacing<float>(block));
 

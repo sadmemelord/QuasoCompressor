@@ -52,12 +52,3 @@ void QuasoCompressorAudioProcessorEditor::attachSliders()
     outputAttach = std::make_unique<SliderAttachment>(audioProcessor.apvts, outputID, outputDial);
 
 }
-
-void QuasoCompressorAudioProcessorEditor::setCommonLabelProps(juce::Label& label)
-{
-    //setting properties common to every slider
-    addAndMakeVisible(label);
-    label.setFont(juce::Font("Helvetica", 16.0f, juce::Font::FontStyleFlags::bold));
-    label.setJustificationType(juce::Justification::centred);
-}
-

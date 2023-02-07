@@ -96,10 +96,23 @@ private:
         &limiterGroup
     };
 
-    //method to set some properties common to every silder, label and group
+    //buttons
+    juce::ToggleButton compBypassButton;
+    juce::ToggleButton limBypassButton;
+
+    //buttons vector
+    std::vector<juce::ToggleButton*> buttons =
+    {
+        &compBypassButton,
+        &limBypassButton
+    };
+
+
+    //method to set some properties common to every silders, labels, groups and buttons
     void setCommonSliderProps(juce::Slider& slider);
     void setCommonLabelProps(juce::Label& label);
     void setGroupProps(juce::GroupComponent& group);
+    void setButtonProps(juce::ToggleButton& button);
 
     //setting up attachment
     using Attachment = std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>;
