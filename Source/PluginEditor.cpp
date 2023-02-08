@@ -59,6 +59,7 @@ QuasoCompressorAudioProcessorEditor::QuasoCompressorAudioProcessorEditor (QuasoC
 
 
     attachSliders();
+    attachButtons();
 
     setSize(1000, 500);
 
@@ -124,9 +125,9 @@ void QuasoCompressorAudioProcessorEditor::resized()
     // 
     //flexboxRowTwo.items = itemArrayRowTwo;
     //flexboxRowTwo.performLayout(getLocalBounds().withY(getHeight() * 0.5).withHeight(getHeight()*0.5));
-    inputDial.setBounds(leftMargin, 50, dialSize, dialSize);
-    threshDial.setBounds(mainLeftMargin, 50, dialSize, dialSize);
-    ratioDial.setBounds(threshDial.getX() + threshDial.getWidth(), 50, dialSize, dialSize);
+    inputDial.setBounds(leftMargin, 65, dialSize, dialSize);
+    threshDial.setBounds(mainLeftMargin, 65, dialSize, dialSize);
+    ratioDial.setBounds(threshDial.getX() + threshDial.getWidth(), 65, dialSize, dialSize);
 
     ioGroup.setBounds(inputDial.getX(), inputDial.getY() * 0.1, inputDial.getWidth(), 
                       inputDial.getY() + inputDial.getHeight() * 2.4); 
@@ -144,7 +145,7 @@ void QuasoCompressorAudioProcessorEditor::resized()
     limiterGroup.setBounds(limThreshDial.getX(), limThreshDial.getY() * 0.1, 
                            limThreshDial.getWidth(), limThreshDial.getY() + limThreshDial.getHeight() * 2.4);
     
-    compBypassButton.setBounds(ratioDial.getX() , getLocalBounds().getY() / 2, 100, 100);
+    compBypassButton.setBounds(compressorGroup.getRight() - 46, compressorGroup.getBottom() - 46, 50, 50);
 
 
 

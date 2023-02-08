@@ -13,6 +13,9 @@
 const juce::String inputID = "input";
 const juce::String inputName = "Input";
 
+const juce::String compBypassID = "compBypass";
+const juce::String compBypassName = "Compressor Bypass";
+
 const juce::String threshID = "thresh";
 const juce::String threshName = "Thresh";
 
@@ -24,6 +27,9 @@ const juce::String attackName = "Attack";
 
 const juce::String releaseID = "release";
 const juce::String releaseName = "Release";
+
+const juce::String limBypassID = "limBypass";
+const juce::String limBypassName = "Limiter Bypass";
 
 const juce::String limThreshID = "limThresh";
 const juce::String limThreshName = "Limiter Thresh";

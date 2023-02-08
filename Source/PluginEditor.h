@@ -11,6 +11,7 @@
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 #include "GUI/LookAndFeel/DialLAF.h"
+#include "GUI/LookAndFeel/ToggleButtonLAF.h"
 
 //==============================================================================
 /**
@@ -42,6 +43,7 @@ private:
 
     //using custom look and feel
     DialStyle customDialLAF;
+    PowerToggleLAF buttonLAF;
 
     //shadows
     juce::DropShadow shadowProperties;
@@ -115,19 +117,22 @@ private:
     void setButtonProps(juce::ToggleButton& button);
 
     //setting up attachment
-    using Attachment = std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>;
+    using ButtonAttachment = std::unique_ptr<juce::AudioProcessorValueTreeState::ButtonAttachment>;
+    ButtonAttachment compBypassAttach;
 
-    Attachment inputAttach;
-    Attachment threshAttach;
-    Attachment ratioAttach;
-    Attachment attackAttach;
-    Attachment releaseAttach;
-    Attachment limThreshAttach;
-    Attachment limReleaseAttach;
-    Attachment outputAttach;
+    using SliderAttachment = std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment>;
+    SliderAttachment inputAttach;
+    SliderAttachment threshAttach;
+    SliderAttachment ratioAttach;
+    SliderAttachment attackAttach;
+    SliderAttachment releaseAttach;
+    SliderAttachment limThreshAttach;
+    SliderAttachment limReleaseAttach;
+    SliderAttachment outputAttach;
 
     //method to attach sliders to the apvts
     void attachSliders();
+    void attachButtons();
 
 
 

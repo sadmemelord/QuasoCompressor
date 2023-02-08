@@ -27,6 +27,10 @@
         <GROUP id="{2F35E864-726F-E587-054A-5BD819F58A90}" name="LookAndFeel">
           <FILE id="z0bHft" name="DialLAF.cpp" compile="1" resource="0" file="Source/GUI/LookAndFeel/DialLAF.cpp"/>
           <FILE id="s7ERMe" name="DialLAF.h" compile="0" resource="0" file="Source/GUI/LookAndFeel/DialLAF.h"/>
+          <FILE id="MAxMTi" name="ToggleButtonLAF.cpp" compile="1" resource="0"
+                file="Source/GUI/LookAndFeel/ToggleButtonLAF.cpp"/>
+          <FILE id="TWvgLm" name="ToggleButtonLAF.h" compile="0" resource="0"
+                file="Source/GUI/LookAndFeel/ToggleButtonLAF.h"/>
         </GROUP>
         <GROUP id="{7B26D9DC-05BF-93CC-821F-A098CBA706A0}" name="Sliders">
           <FILE id="r5YUSw" name="SliderProps.cpp" compile="1" resource="0" file="Source/GUI/Sliders/SliderProps.cpp"/>

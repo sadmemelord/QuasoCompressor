@@ -14,6 +14,9 @@
 extern const juce::String inputID;
 extern const juce::String inputName;
 
+extern const juce::String compBypassID;
+extern const juce::String compBypassName;
+
 extern const juce::String threshID;
 extern const juce::String threshName;
 
@@ -25,6 +28,9 @@ extern const juce::String attackName;
 
 extern const juce::String releaseID;
 extern const juce::String releaseName;
+
+extern const juce::String limBypassID;
+extern const juce::String limBypassName;
 
 extern const juce::String limThreshID;
 extern const juce::String limThreshName;

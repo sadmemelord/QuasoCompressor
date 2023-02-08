@@ -28,10 +28,12 @@ QuasoCompressorAudioProcessor::QuasoCompressorAudioProcessor()
     //every paramaters needs a listener inside the constructor of the main AudioProcessor class
     //everything the listener receives a changes from its parameter ID the parameterChanged method is called
     apvts.addParameterListener(inputID, this);
+    apvts.addParameterListener(compBypassID, this);
     apvts.addParameterListener(threshID, this);
     apvts.addParameterListener(ratioID, this);
     apvts.addParameterListener(attackID, this);
     apvts.addParameterListener(releaseID, this);
+    //apvts.addParameterListener(limBypassID, this);
     apvts.addParameterListener(limThreshID, this);
     apvts.addParameterListener(limReleaseID, this);
     apvts.addParameterListener(outputID, this);
@@ -41,10 +43,12 @@ QuasoCompressorAudioProcessor::~QuasoCompressorAudioProcessor()
 { 
     //the listener for each parameter has to be removed in the destructor
     apvts.removeParameterListener(inputID, this);
+    apvts.removeParameterListener(compBypassID, this);
     apvts.removeParameterListener(threshID, this);
     apvts.removeParameterListener(ratioID, this);
     apvts.removeParameterListener(attackID, this);
     apvts.removeParameterListener(releaseID, this);
+    //apvts.removeParameterListener(limBypassID, this);
     apvts.removeParameterListener(limThreshID, this);
     apvts.removeParameterListener(limReleaseID, this);
     apvts.removeParameterListener(outputID, this);
@@ -69,20 +73,24 @@ juce::AudioProcessorValueTreeState::ParameterLayout QuasoCompressorAudioProcesso
 
     //parameters are created
     auto pInput = std::make_unique<juce::AudioParameterFloat>(inputID, inputName, -60.0f, 24.0f, 0.0f);
+    auto pBypass = std::make_unique<juce::AudioParameterBool>(compBypassID, compBypassName, false);
     auto pThresh = std::make_unique<juce::AudioParameterFloat>(threshID, threshName, -60.0f, 12.0f, 0.0f);
     auto pRatio = std::make_unique<juce::AudioParameterFloat>(ratioID, ratioName, 1.0f, 20.0f, 1.0f);
     auto pAttack = std::make_unique<juce::AudioParameterFloat>(attackID, attackName, attackRange, 50.0f);
     auto pRelease = std::make_unique<juce::AudioParameterFloat>(releaseID, releaseName, releaseRange, 160.0f);
+    //auto pLimBypass = std::make_unique<juce::AudioParameterBool>(limBypassID, limBypassName, false);
     auto pLimThresh = std::make_unique<juce::AudioParameterFloat>(limThreshID, limThreshName, -60.0f, 0.0f, 160.0f);
     auto pLimRelease = std::make_unique<juce::AudioParameterFloat>(limReleaseID, limReleaseName, limReleaseRange, 250.0f);
     auto pOutput = std::make_unique<juce::AudioParameterFloat>(outputID, outputName, -60.0f, 24.0f, 0.0f);
      
     //different type of parameters like floats or selection are pushed into the params vector
     params.push_back(std::move(pInput));
+    params.push_back(std::move(pBypass));
     params.push_back(std::move(pThresh));
     params.push_back(std::move(pRatio));
     params.push_back(std::move(pAttack)); 
     params.push_back(std::move(pRelease));
+    //params.push_back(std::move(pLimBypass));
     params.push_back(std::move(pLimThresh));
     params.push_back(std::move(pLimRelease));
     params.push_back(std::move(pOutput));
@@ -102,6 +110,7 @@ void QuasoCompressorAudioProcessor::updateParameters()
 {
     //the load method is needed because the raw parameters are atomic
     inputModule.setGainDecibels(apvts.getRawParameterValue(inputID)->load());
+    customCompressorModule.setBypass(apvts.getRawParameterValue(compBypassID)->load());
     customCompressorModule.setThreshold(apvts.getRawParameterValue(threshID)->load());
     customCompressorModule.setRatio(apvts.getRawParameterValue(ratioID)->load());
     customCompressorModule.setAttack(apvts.getRawParameterValue(attackID)->load());

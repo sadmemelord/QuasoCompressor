@@ -13,4 +13,12 @@
 void QuasoCompressorAudioProcessorEditor::setButtonProps(juce::ToggleButton& button)
 {
     addAndMakeVisible(button);
+    button.setLookAndFeel(&buttonLAF);
+}
+
+
+void QuasoCompressorAudioProcessorEditor::attachButtons()
+{
+    using ButtonAttachment = juce::AudioProcessorValueTreeState::ButtonAttachment;
+    compBypassAttach = std::make_unique<ButtonAttachment>(audioProcessor.apvts, compBypassID, compBypassButton);
 }
