@@ -12,6 +12,7 @@
 
 void QuasoCompressorAudioProcessorEditor::setGroupProps(juce::GroupComponent& group)
 {
+    //setting group properties
     addAndMakeVisible(group);
     group.setColour(group.outlineColourId, juce::Colours::darkgrey);
     ioGroup.setText("I/O");

@@ -61,7 +61,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout QuasoCompressorAudioProcesso
     //parameters of the apvts are stored in a vector as unique_pointers to RangedAudioParamter
     std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
 
-    //attack and release parameters need to be skewed and not linear
+    //attack and release parameters are skewed and not linear
     juce::NormalisableRange<float> attackRange = juce::NormalisableRange<float>(0.0f, 200.0f, 1.0f);
     attackRange.setSkewForCentre(50.0f);
 
@@ -71,26 +71,24 @@ juce::AudioProcessorValueTreeState::ParameterLayout QuasoCompressorAudioProcesso
     juce::NormalisableRange<float> limReleaseRange = juce::NormalisableRange<float>(1.0f, 1000.0f, 1.0f);
     releaseRange.setSkewForCentre(250.0f);
 
-    //parameters are created
+    //every parameter in the apvts corresponds to a parameter in the various dsp modules
     auto pInput = std::make_unique<juce::AudioParameterFloat>(inputID, inputName, -60.0f, 24.0f, 0.0f);
     auto pBypass = std::make_unique<juce::AudioParameterBool>(compBypassID, compBypassName, false);
     auto pThresh = std::make_unique<juce::AudioParameterFloat>(threshID, threshName, -60.0f, 12.0f, 0.0f);
     auto pRatio = std::make_unique<juce::AudioParameterFloat>(ratioID, ratioName, 1.0f, 20.0f, 1.0f);
     auto pAttack = std::make_unique<juce::AudioParameterFloat>(attackID, attackName, attackRange, 50.0f);
     auto pRelease = std::make_unique<juce::AudioParameterFloat>(releaseID, releaseName, releaseRange, 160.0f);
-    //auto pLimBypass = std::make_unique<juce::AudioParameterBool>(limBypassID, limBypassName, false);
     auto pLimThresh = std::make_unique<juce::AudioParameterFloat>(limThreshID, limThreshName, -60.0f, 0.0f, 160.0f);
     auto pLimRelease = std::make_unique<juce::AudioParameterFloat>(limReleaseID, limReleaseName, limReleaseRange, 250.0f);
     auto pOutput = std::make_unique<juce::AudioParameterFloat>(outputID, outputName, -60.0f, 24.0f, 0.0f);
      
-    //different type of parameters like floats or selection are pushed into the params vector
+    //parameters are pushed into a vector
     params.push_back(std::move(pInput));
     params.push_back(std::move(pBypass));
     params.push_back(std::move(pThresh));
     params.push_back(std::move(pRatio));
     params.push_back(std::move(pAttack)); 
     params.push_back(std::move(pRelease));
-    //params.push_back(std::move(pLimBypass));
     params.push_back(std::move(pLimThresh));
     params.push_back(std::move(pLimRelease));
     params.push_back(std::move(pOutput));
@@ -108,7 +106,8 @@ void QuasoCompressorAudioProcessor::parameterChanged(const juce::String& paramet
 
 void QuasoCompressorAudioProcessor::updateParameters()
 {
-    //the load method is needed because the raw parameters are atomic
+    //in this method every DSP is updated with the linked apvts alias
+    //load() is needed because the raw parameters are atomic
     inputModule.setGainDecibels(apvts.getRawParameterValue(inputID)->load());
     customCompressorModule.setBypass(apvts.getRawParameterValue(compBypassID)->load());
     customCompressorModule.setThreshold(apvts.getRawParameterValue(threshID)->load());
@@ -118,7 +117,6 @@ void QuasoCompressorAudioProcessor::updateParameters()
     limiterModule.setThreshold(apvts.getRawParameterValue(limThreshID)->load());
     limiterModule.setRelease(apvts.getRawParameterValue(limReleaseID)->load());
     outputModule.setGainDecibels(apvts.getRawParameterValue(outputID)->load());
-
 }
 
 

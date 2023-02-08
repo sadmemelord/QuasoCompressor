@@ -28,12 +28,36 @@ void QuasoCompressorAudioProcessorEditor::setCommonSliderProps(juce::Slider& sli
 
     slider.setLookAndFeel(&customDialLAF);
 
+}
+
+void QuasoCompressorAudioProcessorEditor::setShadowProps(juce::Slider& slider)
+{
     //setting shadow properties based on the juce::shadowdrop
     shadowProperties.radius = 25;
-    shadowProperties.offset = juce::Point<int>(0,0);
+    shadowProperties.offset = juce::Point<int>(0, 0);
     shadowProperties.colour = juce::Colours::black.brighter(0.05);
     dialShadow.setShadowProperties(shadowProperties);
     slider.setComponentEffect(&dialShadow);
+
+}
+
+
+void QuasoCompressorAudioProcessorEditor::setUniqueSliderProps()
+{
+    //some properties are different between dials like the textbox suffix
+    inputDial.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::indianred.darker(0.3));
+    inputDial.setTextValueSuffix(" dB");
+    threshDial.setTextValueSuffix(" dB");
+    attackDial.setTextValueSuffix(" ms");
+    releaseDial.setTextValueSuffix(" ms");
+    limThreshDial.setColour(juce::Slider::ColourIds::thumbColourId, 
+                            limThreshDial.findColour(juce::Slider::ColourIds::thumbColourId).withSaturation(0.85));
+    limThreshDial.setTextValueSuffix(" dB");
+    limReleaseDial.setColour(juce::Slider::ColourIds::thumbColourId,
+                             limReleaseDial.findColour(juce::Slider::ColourIds::thumbColourId).withSaturation(0.85));
+    limReleaseDial.setTextValueSuffix(" ms");
+    outputDial.setColour(juce::Slider::ColourIds::thumbColourId, juce::Colours::indianred.darker(0.3));
+    outputDial.setTextValueSuffix(" dB");
 
 }
 

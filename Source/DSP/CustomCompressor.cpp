@@ -36,11 +36,13 @@ void CustomCompressor::setRatio(float newRatio)
 
 void CustomCompressor::setAttack(float newAttack)
 {
+    //attack is in expressed in milliseconds
     _attack = newAttack / 1000.0f;
 }
 
 void CustomCompressor::setRelease(float newRelease)
 {
+    //release is in expressed in milliseconds
     _release = newRelease / 1000.0f;
 }
 

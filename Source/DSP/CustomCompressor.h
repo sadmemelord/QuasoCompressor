@@ -24,8 +24,8 @@ public:
         //the process method is defined in the header file
         //because it is passed through the translation unit
         //and has a better chance of being optimized
+        
         //bypassing the dsp
-
         if (_isBypassed == true)
             return;
 

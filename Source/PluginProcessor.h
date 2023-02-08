@@ -64,23 +64,22 @@ private:
     //and an overrided method to listen to parameters changed for the GUI
     //to do so the AudioProcessor class needs to inherit also from juce::AudioProcessorValueTreeState::Listener
     juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout();
+
+    //every time a parameter in the GUI is changed this method calls updateParameters
     void parameterChanged(const juce::String& parameterID, float newValue) override;
+
+    //this method updates every parameter in the apvts
+    void updateParameters();
 
     //to change the input and output gain two dsp modules are used
     juce::dsp::Gain<float> inputModule;
     juce::dsp::Gain<float> outputModule;
 
-    //the dsp module also implements a compressor module
-    juce::dsp::Compressor<float> compressorModule;
-
-    //custom dsp compressor module based on Eric Tarr HACK AUDIO
+    //custom dsp compressor module based on Eric Tarr HACK AUDIO 
     CustomCompressor customCompressorModule;
 
     //limiter module
     juce::dsp::Limiter<float> limiterModule;
-
-    //method to set the various parameters
-    void updateParameters();
 
 
     //==============================================================================
