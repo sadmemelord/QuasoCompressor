@@ -3,7 +3,7 @@
 
     DialLAF.h
     Created: 1 Feb 2023 5:32:48pm
-    Author:  Utente
+    Author:  sadmemelord
 
   ==============================================================================
 */

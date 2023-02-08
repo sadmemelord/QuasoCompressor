@@ -3,7 +3,7 @@
 
     CustomCompressor.h
     Created: 7 Feb 2023 4:07:01pm
-    Author:  Utente
+    Author:  sadmemelord
 
   ==============================================================================
 */

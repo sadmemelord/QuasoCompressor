@@ -3,7 +3,7 @@
 
     SliderProps.cpp
     Created: 1 Feb 2023 11:41:19am
-    Author:  Utente
+    Author:  sadmemelord
 
   ==============================================================================
 */

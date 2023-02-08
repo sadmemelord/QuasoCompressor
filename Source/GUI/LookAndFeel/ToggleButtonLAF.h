@@ -3,7 +3,7 @@
 
     ToggleButtonLAF.h
     Created: 8 Feb 2023 11:21:46am
-    Author:  Utente
+    Author:  sadmemelord
 
   ==============================================================================
 */
